@@ -9,7 +9,7 @@ module.exports = async function (env, argv) {
   if (config.devServer) {
     config.devServer.allowedHosts = 'all';
     config.devServer.host = '0.0.0.0';
-    config.devServer.port = 5000;
+    config.devServer.port = 8080;
     config.devServer.client = {
       webSocketURL: {
         port: 5000

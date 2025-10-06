@@ -26,7 +26,7 @@ outputType = "webview"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "./start-web.sh"
+args = "bash start-web.sh"
 waitForPort = 5000
 
 [[ports]]
@@ -34,13 +34,22 @@ localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 19006
+localPort = 8080
+externalPort = 8080
+
+[[ports]]
+localPort = 19000
 externalPort = 3001
+
+[[ports]]
+localPort = 19006
+externalPort = 3000
 
 [[ports]]
 localPort = 19007
 externalPort = 3002
 
-[[ports]]
-localPort = 38819
-externalPort = 3000
+[deployment]
+deploymentTarget = "autoscale"
+run = ["npx", "serve", "-s", "web-build", "-l", "5000"]
+build = ["npx", "expo", "export:web"]
