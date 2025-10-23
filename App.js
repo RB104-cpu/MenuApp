@@ -1,14 +1,13 @@
-
-import React, { useEffect, useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import HomeScreen from './src/screens/HomeScreen';
-import DishFormScreen from './src/screens/DishFormScreen';
-import ChefManagementScreen from './src/screens/ChefManagementScreen';
+import React, { useEffect, useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import HomeScreen from "./src/screens/HomeScreen";
+import DishFormScreen from "./src/screens/DishFormScreen";
+import ChefManagementScreen from "./src/screens/ChefManagementScreen";
 
 const Stack = createStackNavigator();
-const STORAGE_KEY = '@christoffel_menu';
+const STORAGE_KEY = "@christoffel_menu";
 
 export default function App() {
   const [menuItems, setMenuItems] = useState([]);
@@ -20,17 +19,34 @@ export default function App() {
         if (raw) {
           setMenuItems(JSON.parse(raw));
         } else {
-          // Seed with dummy data
           const seed = [
-            { id: '1', name: 'Beetroot Carpaccio', description: 'Thin sliced beetroot with feta and walnuts', course: 'Starter', price: 85.00 },
-            { id: '2', name: 'Pan-seared Lamb', description: 'Served with rosemary jus and roasted veg', course: 'Main', price: 220.00 },
-            { id: '3', name: 'Vanilla Panna Cotta', description: 'Creamy panna cotta with berry compote', course: 'Dessert', price: 75.00 }
+            {
+              id: "1",
+              name: "Beetroot Carpaccio",
+              description: "Thin sliced beetroot with feta and walnuts",
+              course: "Starter",
+              price: 85.0,
+            },
+            {
+              id: "2",
+              name: "Pan-seared Lamb",
+              description: "Served with rosemary jus and roasted veg",
+              course: "Main",
+              price: 220.0,
+            },
+            {
+              id: "3",
+              name: "Vanilla Panna Cotta",
+              description: "Creamy panna cotta with berry compote",
+              course: "Dessert",
+              price: 75.0,
+            },
           ];
           setMenuItems(seed);
           await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(seed));
         }
       } catch (e) {
-        console.warn('Failed to load menu', e);
+        console.warn("Failed to load menu", e);
       }
     })();
   }, []);
@@ -39,8 +55,8 @@ export default function App() {
     setMenuItems(items);
     try {
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-    } catch(e) {
-      console.warn('Failed to save menu', e);
+    } catch (e) {
+      console.warn("Failed to save menu", e);
     }
   };
 
@@ -50,26 +66,41 @@ export default function App() {
   };
 
   const updateMenuItem = (updated) => {
-    const next = menuItems.map(m => m.id === updated.id ? updated : m);
+    const next = menuItems.map((m) => (m.id === updated.id ? updated : m));
     persist(next);
   };
 
   const deleteMenuItem = (id) => {
-    const next = menuItems.filter(m => m.id !== id);
+    const next = menuItems.filter((m) => m.id !== id);
     persist(next);
   };
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerTitleAlign: 'center' }}>
-        <Stack.Screen name="Home" options={{ title: 'Guest Menu' }}>
+      <Stack.Navigator screenOptions={{ headerTitleAlign: "center" }}>
+        <Stack.Screen name="Home" options={{ title: "Guest Menu" }}>
           {(props) => <HomeScreen {...props} menuItems={menuItems} />}
         </Stack.Screen>
-        <Stack.Screen name="ChefManagement" options={{ title: 'Chef Management' }}>
-          {(props) => <ChefManagementScreen {...props} menuItems={menuItems} onDelete={deleteMenuItem} />}
+        <Stack.Screen
+          name="ChefManagement"
+          options={{ title: "Chef Management" }}
+        >
+          {(props) => (
+            <ChefManagementScreen
+              {...props}
+              menuItems={menuItems}
+              onDelete={deleteMenuItem}
+            />
+          )}
         </Stack.Screen>
-        <Stack.Screen name="DishForm" options={{ title: 'Add / Edit Dish' }}>
-          {(props) => <DishFormScreen {...props} addMenuItem={addMenuItem} updateMenuItem={updateMenuItem} />}
+        <Stack.Screen name="DishForm" options={{ title: "Add / Edit Dish" }}>
+          {(props) => (
+            <DishFormScreen
+              {...props}
+              addMenuItem={addMenuItem}
+              updateMenuItem={updateMenuItem}
+            />
+          )}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
