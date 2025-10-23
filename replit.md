@@ -6,13 +6,15 @@ A React Native (Expo) web application for managing a restaurant menu. Users can 
 ## Project Structure
 - **App.js** - Main app component with navigation and state management
 - **src/screens/** - Screen components
-  - HomeScreen.js - Main menu display with filtering
+  - HomeScreen.js - Guest view with menu display, filtering, and average prices
+  - ChefManagementScreen.js - Chef interface for managing menu items
   - DishFormScreen.js - Add/edit dish form
 - **src/components/** - Reusable components  
   - DishCard.js - Individual dish display card
 - **proxy-server.js** - Express proxy to forward port 5000 to Expo webpack (19006)
 - **start-web.sh** - Startup script for web server
 - **webpack.config.js** - Webpack configuration for Replit environment
+- **CHANGELOG.md** - Detailed list of changes for PoE Part 3
 
 ## Tech Stack
 - React Native (Expo SDK 48)
@@ -30,7 +32,19 @@ A React Native (Expo) web application for managing a restaurant menu. Users can 
 - Proxy server forwards requests from 5000 → 19006
 - CI mode enabled for Metro bundler
 
-## Recent Changes (Oct 6, 2025)
+## Recent Changes
+
+### October 23, 2025 - PoE Part 3 Features
+- ✅ Added average price calculation by course on home screen (using for loops)
+- ✅ Created separate Chef Management screen for managing menu items
+- ✅ Converted home screen to guest-only view with course filtering
+- ✅ Implemented functions to organize code (getFilteredItems, handleDelete, etc.)
+- ✅ Used global variables (COURSES array, STORAGE_KEY)
+- ✅ All menu items stored and managed in arrays
+- ✅ Created comprehensive CHANGELOG.md documenting all changes
+- See CHANGELOG.md for detailed implementation notes
+
+### October 6, 2025 - Initial Setup
 - Imported from GitHub  
 - Configured for Replit web environment
 - Added proxy server for port management
