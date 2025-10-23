@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from './src/screens/HomeScreen';
 import DishFormScreen from './src/screens/DishFormScreen';
+import ChefManagementScreen from './src/screens/ChefManagementScreen';
 
 const Stack = createStackNavigator();
 const STORAGE_KEY = '@christoffel_menu';
@@ -61,8 +62,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerTitleAlign: 'center' }}>
-        <Stack.Screen name="Home">
-          {(props) => <HomeScreen {...props} menuItems={menuItems} onDelete={deleteMenuItem} />}
+        <Stack.Screen name="Home" options={{ title: 'Guest Menu' }}>
+          {(props) => <HomeScreen {...props} menuItems={menuItems} />}
+        </Stack.Screen>
+        <Stack.Screen name="ChefManagement" options={{ title: 'Chef Management' }}>
+          {(props) => <ChefManagementScreen {...props} menuItems={menuItems} onDelete={deleteMenuItem} />}
         </Stack.Screen>
         <Stack.Screen name="DishForm" options={{ title: 'Add / Edit Dish' }}>
           {(props) => <DishFormScreen {...props} addMenuItem={addMenuItem} updateMenuItem={updateMenuItem} />}
