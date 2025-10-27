@@ -1,5 +1,5 @@
 
-Christoffel's Menu App - Refactor
+Christoffel's Menu App
 --------------------------------
 
 This is a refactored React Native (Expo) project prepared for the PoE.
@@ -9,7 +9,4 @@ Features:
 - AsyncStorage persistence.
 - Edit/Delete actions on each dish.
 
-How to run:
-1. Install dependencies: npm install
-2. Start Expo: npm start
-3. Run on Android: npm run android
+
