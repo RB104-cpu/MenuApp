@@ -1,6 +1,6 @@
 # Changelog - Portfolio of Evidence Part 3
 
-## Changes Made for PoE Part 3 (October 23, 2025)
+## Changes Made for PoE Part 3 
 
 ### New Features Implemented
 
@@ -129,7 +129,7 @@ for (let j = 0; j < courseItems.length; j++) {
 
 ### Testing Notes
 - All features tested and working correctly
-- App runs successfully on Replit web environment
+- App runs successfully
 - Data persists across sessions using AsyncStorage
 - Navigation flows properly between all screens
 - Average calculations are accurate
